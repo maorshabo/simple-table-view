@@ -18,7 +18,6 @@ class ResultsTableController {
     }
 
     $onChanges(changes) {
-        console.log(changes);
         this.pager = PagerService.getPager(this.totalPlayers, this.currentPage, this.pageSize, 6);
         // get levels only from the first response of this.rows
         if (!this.levels || this.levels.length === 0) {

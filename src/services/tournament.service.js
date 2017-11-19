@@ -12,6 +12,7 @@ class Tournament {
         "ngInject";
         this._$http = $http;
         this._$q = $q;
+        this.suspectedUsers = [];
     }
 
     getTournamentResults(start = 0, n = 100, search, level) {
@@ -34,9 +35,6 @@ class Tournament {
             URL += '&level=' + level.toLowerCase();
         }
         return this._$http.get(URL)
-            .then(response => {
-                return response;
-            })
             .catch(e => {
                 console.error(e);
             });
@@ -44,8 +42,14 @@ class Tournament {
 
     getSuspectedPlayers() {
         const URL = getApiUrl(`players/suspects`);
+        if (this.suspectedUsers.length > 0) {
+            return this._$q.resolve(this.suspectedUsers);
+        }
         return this._$http.get(URL)
-            .then(response => response.data)
+            .then(response => {
+                this.suspectedUsers = response.data;
+                return response.data;
+            })
             .catch(e => {
                 console.error(e);
             });

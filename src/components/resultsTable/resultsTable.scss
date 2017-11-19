@@ -2,3 +2,22 @@
   background: red;
   color:#FFF;
 }
+
+.resultsTableContainer {
+  .header {
+    position: fixed;
+    top: 0;
+    left:0;
+    padding:10px 0;
+    width: 100%;
+    background: #FFF;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    padding:10px 0;
+    width: 100%;
+    background: #FFF;
+  }
+}
