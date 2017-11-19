@@ -6,7 +6,9 @@ import './resultsTable.scss';
 let resultsComponent = {
     restrict: 'E',
     bindings: {
-        rows: '<'
+        rows: '<',
+        loadPlayers: '&',
+        totalPlayers: '<'
     },
     template,
     controller,

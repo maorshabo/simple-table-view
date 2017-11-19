@@ -1,14 +1,15 @@
 <div class="resultsTableContainer container-fluid">
     <div class="row">
         <div class="col-sm-8">
-            <h2>Tournament Results</h2>
+            <h2>Tournament 101 - Final Results</h2>
         </div>
         <div class="col-sm-4 text-right">
             <form class="form-inline">
-                <div class="form-group">
+                <div class="form-group flex-grow-1">
                     <label for="search">Search</label>
-                    <input type="text" id="search" ng-model="vm.searchQuery" placeholder="Player id, name, level or score"
-                           class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+                    <input type="text" id="search" ng-model="vm.searchQuery" ng-change="vm.loadData()"
+                           placeholder="Player id, name, level or score"
+                           class="form-control mx-sm-3 flex-grow-2">
                 </div>
             </form>
         </div>
@@ -19,26 +20,46 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Level</th>
+                <th>
+                    <div class="d-flex">
+                        <div>Level</div>
+                        <div class="col-sm-4">
+                            <select class="form-control text-capitalize" ng-options="level for level in vm.levels"
+                                    ng-model="vm.selectedLevel" ng-change="vm.loadData()">
+                                <option value="">Filter level</option>
+                            </select>
+                        </div>
+                    </div>
+                </th>
                 <th>Score</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in vm.rows | filter: vm.searchQuery" ng-class="{'suspect': row.isSuspect}">
+            <tr ng-repeat="row in vm.rows" ng-class="{'suspect': row.isSuspect}">
                 <td ng-bind-html="row['id'] | highlight: vm.searchQuery"></td>
-                <td ng-bind-html="row['name'] | highlight: vm.searchQuery"></td>
-                <td ng-bind-html="row['level'] | highlight: vm.searchQuery"></td>
+                <td class="text-capitalize" ng-bind-html="row['name'] | highlight: vm.searchQuery"></td>
+                <td class="text-capitalize" ng-bind-html="row['level'] | highlight: vm.searchQuery"></td>
                 <td ng-bind-html="row['score'] | highlight: vm.searchQuery"></td>
+            </tr>
+            <tr ng-if="vm.rows.length == 0">
+                <td colspan="4" class="alert alert-light text-center">
+                    No results for <strong><i>"{{ vm.searchQuery }}"</i></strong>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="row">
         <div class="col-sm-6 text-left">
-            <small>Showing {{ vm.rows.length }} results</small>
+            <small>Showing
+                <select class="form-control d-inline col-sm-1" ng-model="vm.pageSize"
+                        ng-options="results as results for results in vm.resultsOptions"
+                        ng-change="vm.setPageSize(vm.pageSize)"></select>
+                results of {{ vm.totalPlayers }} entries
+            </small>
         </div>
         <div class="col-sm-6 float-right">
-            <pagination></pagination>
+            <pagination set-page="vm.setPage(page)" pager="vm.pager"></pagination>
         </div>
     </div>
 </div>

@@ -6,13 +6,15 @@ class AppCtrl {
     }
 
     $onInit() {
-        this.loadPlayers();
+        this.totalPlayers = 0;
     }
 
-    loadPlayers() {
-        this._tournamentService.getPlayers()
-            .then(players => {
-                this.players = players;
+    loadPlayers(start, n, search, level) {
+        return this._tournamentService.getTournamentResults(start, n, search, level)
+            .then(response => {
+                this.players = response.players;
+                this.totalPlayers = response.total;
+                return this.players;
             })
             .catch(e => {
                 console.error(e);

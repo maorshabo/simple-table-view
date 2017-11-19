@@ -7,6 +7,10 @@ import template from './pagination.html';
 let paginationComponent = {
     restrict: 'E',
     template,
+    bindings: {
+        pager: '=',
+        setPage: '&'
+    },
     controller,
     controllerAs: 'vm'
 };

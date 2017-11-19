@@ -11,5 +11,4 @@ angular.module('app', [
     Components,
     Services,
     Utils
-])
-;
+]);

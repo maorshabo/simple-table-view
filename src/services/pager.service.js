@@ -1,11 +1,7 @@
 import range from 'lodash';
 
 class PagerService {
-    constructor() {
-
-    }
-
-    getPager(totalItems, currentPage, pageSize) {
+    static getPager(totalItems, currentPage, pageSize, maxPagesToShow = 10) {
         // default to first page
         currentPage = currentPage || 1;
 
@@ -14,23 +10,25 @@ class PagerService {
 
         // calculate total pages
         let totalPages = Math.ceil(totalItems / pageSize);
-
+        let half = Math.ceil(maxPagesToShow / 2);
         let startPage, endPage;
-        if (totalPages <= 10) {
-            // less than 10 total pages so show all
+        if (totalPages <= maxPagesToShow) {
+            // less than @maxPagesToShow total pages so show all
             startPage = 1;
             endPage = totalPages;
         } else {
             // more than 10 total pages so calculate start and end pages
-            if (currentPage <= 6) {
+            if (currentPage <= half + 1) {
                 startPage = 1;
-                endPage = 10;
-            } else if (currentPage + 4 >= totalPages) {
-                startPage = totalPages - 9;
+                endPage = maxPagesToShow;
+            }
+            // right edge
+            else if (currentPage + half >= totalPages) {
+                startPage = totalPages - maxPagesToShow + 1;
                 endPage = totalPages;
             } else {
-                startPage = currentPage - 5;
-                endPage = currentPage + 4;
+                startPage = currentPage - half;
+                endPage = currentPage + half - 1;
             }
         }
 
@@ -39,7 +37,9 @@ class PagerService {
         let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
         // create an array of pages to ng-repeat in the pager control
-        let pages = range(startPage, endPage + 1);
+        let idx = startPage;
+        const arraySize = endPage > maxPagesToShow ? maxPagesToShow : endPage;
+        let pages = Array(arraySize).fill(0).map(i => idx++);
 
         // return object with all pager properties required by the view
         return {
@@ -55,3 +55,5 @@ class PagerService {
         };
     }
 }
+
+export default PagerService;
