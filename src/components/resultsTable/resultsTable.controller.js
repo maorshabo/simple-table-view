@@ -16,6 +16,7 @@ class ResultsTableController {
         this.pageSize = 10;
         this.resultsOptions = RESULTS_PER_PAGE;
         this.orders = {};
+        this.currentOrderBy = '';
         this.setPage(this.currentPage);
     }
 
@@ -36,6 +37,9 @@ class ResultsTableController {
         this.pager = PagerService.getPager(this.totalPlayers, this.currentPage, this.pageSize, 6);
         if (this.orders && Object.keys(this.orders).length === 0) {
             this.initOrders(this.getColumns(this.rows));
+        }
+        if (this.currentOrderBy) {
+            this.orderRows(this.currentOrderBy, this.orders[this.currentOrderBy]);
         }
         // get levels only from the first response of this.rows
         if (!this.levels || this.levels.length === 0) {
@@ -82,7 +86,12 @@ class ResultsTableController {
         else {
             this.orders[key] = 1;
         }
-        this.rows = this._$filter('orderBy')(this.rows, this.orders[key] > 0 ? key : '-' + key);
+        this.currentOrderBy = key;
+        this.orderRows(key, this.orders[key]);
+    }
+
+    orderRows(key, value) {
+        this.rows = this._$filter('orderBy')(this.rows, value > 0 ? key : '-' + key);
     }
 
     loadData() {

@@ -20,11 +20,11 @@
             <tr class="bg-primary text-white d-flex">
                 <th class="col-sm-1 vertical-align-middle" ng-click="vm.orderBy('id')">
                     <div class="d-inline-block">#</div>
-                    <i ng-class="{'fa-chevron-down': vm.orders['id'] == 1, 'fa-chevron-up': vm.orders['id'] == -1}" class="fa float-right"></i>
+                    <i ng-class="{'fa-chevron-up': vm.orders['id'] == 1, 'fa-chevron-down': vm.orders['id'] == -1}" class="fa float-right"></i>
                 </th>
                 <th class="col-sm-4 vertical-align-middle" ng-click="vm.orderBy('name')">
                     <div class="d-inline-block">Name </div>
-                    <i ng-class="{'fa-chevron-down': vm.orders['name'] == 1, 'fa-chevron-up': vm.orders['name'] == -1}" class="fa float-right"></i>
+                    <i ng-class="{'fa-chevron-up': vm.orders['name'] == 1, 'fa-chevron-down': vm.orders['name'] == -1}" class="fa float-right"></i>
                 </th>
                 <th class="col-sm-5 no-cursor">
                     <div class="d-inline-block">Level</div>
@@ -35,14 +35,14 @@
                 </th>
                 <th class="col-sm-2 vertical-align-middle" ng-click="vm.orderBy('score')">
                     <div class="d-inline-block">Score</div>
-                    <i ng-class="{'fa-chevron-down': vm.orders['score'] == 1, 'fa-chevron-up': vm.orders['score'] == -1}" class="fa float-right"></i>
+                    <i ng-class="{'fa-chevron-up': vm.orders['score'] == 1, 'fa-chevron-down': vm.orders['score'] == -1}" class="fa float-right"></i>
                 </th>
             </tr>
             </thead>
         </table>
         <table class="table table-hover resultsTable">
             <tbody>
-            <tr ng-repeat="row in vm.rows" class="d-flex" ng-class="{'bg-danger text-white': row.isSuspect}">
+            <tr ng-repeat="row in vm.rows" class="d-flex" data-tooltip="Suspect of cheating" ng-class="{'bg-danger text-white suspect': row.isSuspect}">
                 <td class="col-sm-1" ng-bind-html="row['id'] | highlight: vm.searchQuery"></td>
                 <td class="col-sm-4 text-capitalize" ng-bind-html="row['name'] | highlight: vm.searchQuery"></td>
                 <td class="col-sm-5 text-capitalize" ng-bind-html="row['level'] | highlight: vm.searchQuery"></td>
