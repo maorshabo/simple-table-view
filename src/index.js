@@ -5,6 +5,7 @@ import Services from './services';
 import Utils from './utils/hightlight.filter';
 
 import './style/main.scss';
+import 'font-awesome/css/font-awesome.min.css';
 
 
 angular.module('app', [

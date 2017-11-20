@@ -18,8 +18,8 @@
         <table class="table table-hover">
             <thead>
             <tr class="bg-primary text-white">
-                <th>#</th>
-                <th>Name</th>
+                <th ng-click="vm.orderBy('id')"># <i ng-class="{'fa-chevron-down': vm.orders['id'] == 1, 'fa-chevron-up': vm.orders['id'] == -1}" class="fa float-right"></i></th>
+                <th ng-click="vm.orderBy('name')">Name <i ng-class="{'fa-chevron-down': vm.orders['name'] == 1, 'fa-chevron-up': vm.orders['name'] == -1}" class="fa float-right"></i></th>
                 <th>
                     <div class="d-flex">
                         <div>Level</div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </th>
-                <th>Score</th>
+                <th ng-click="vm.orderBy('score')">Score <i ng-class="{'fa-chevron-down': vm.orders['score'] == 1, 'fa-chevron-up': vm.orders['score'] == -1}" class="fa float-right"></i></th>
             </tr>
             </thead>
             <tbody>
