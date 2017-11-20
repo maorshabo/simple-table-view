@@ -1,7 +1,7 @@
 import 'whatwg-fetch'
 
-// const API_URL = 'http://localhost:1337/localhost:20000/api/v1';
-const API_URL = 'http://localhost:20000/api/v1';
+const API_URL = 'http://localhost:1337/localhost:20000/api/v1';
+// const API_URL = 'http://localhost:20000/api/v1';
 
 function getApiUrl(path) {
     return `${API_URL}/${path}`

@@ -4,8 +4,8 @@ import Components from './components';
 import Services from './services';
 import Utils from './utils/hightlight.filter';
 
+import 'font-awesome/scss/font-awesome.scss';
 import './style/main.scss';
-import 'font-awesome/css/font-awesome.min.css';
 
 
 angular.module('app', [

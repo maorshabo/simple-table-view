@@ -4,6 +4,12 @@
 }
 
 .resultsTableContainer {
+  .title {
+    border-bottom: rgba(255,255,255,.5) 1px solid;
+    position:fixed;
+    width:100%;
+    top:0;
+  }
   .header {
     position: fixed;
     top: 0;
@@ -20,4 +26,28 @@
     width: 100%;
     background: #FFF;
   }
+}
+
+.resultsTableHeader {
+  margin-bottom: 0 !important;
+  position:fixed;
+  top:55px;
+
+  thead {
+    th {
+      cursor: pointer;
+      border-top: none;
+      &.vertical-align-middle {
+        padding-top:1.1rem;
+      }
+      i {
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+.resultsTable {
+  margin-top:115px;
+  margin-bottom:58px !important;
 }

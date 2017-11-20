@@ -66,13 +66,16 @@ class ResultsTableController {
         this.loadData();
     }
 
-    clearOrders() {
+    clearOrders(key) {
         for (let column in this.orders) {
-            this.orders[column] = 0;
+            if (column !== key) {
+                this.orders[column] = 0;
+            }
         }
     }
 
     orderBy(key) {
+        this.clearOrders(key);
         if (this.orders[key] === 1 || this.orders[key] === -1) {
             this.orders[key] *= -1;
         }

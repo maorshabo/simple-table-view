@@ -1,7 +1,7 @@
+import './resultsTable.scss';
 import angular from 'angular';
 import controller from './resultsTable.controller';
 import template from './resultsTable.html';
-import './resultsTable.scss';
 
 let resultsComponent = {
     restrict: 'E',
