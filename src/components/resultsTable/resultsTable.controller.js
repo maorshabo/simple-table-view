@@ -103,8 +103,8 @@ class ResultsTableController {
         });
     }
 
-    search() {
-        this.loadData();
+    reloadDataAndReset() {
+        // this.loadData();
         this.setPage(1);
     }
 }

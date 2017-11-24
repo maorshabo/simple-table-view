@@ -7,7 +7,7 @@
             <form class="form-inline">
                 <div class="form-group flex-grow-1">
                     <label for="search">Search</label>
-                    <input type="text" id="search" ng-model="vm.searchQuery" ng-change="vm.search()"
+                    <input type="text" id="search" ng-model="vm.searchQuery" ng-change="vm.reloadDataAndReset()"
                            placeholder="Player id, name, level or score"
                            class="form-control ml-sm-3 flex-grow-2">
                 </div>
@@ -29,7 +29,7 @@
                 <th class="col-sm-5 no-cursor">
                     <div class="d-inline-block">Level</div>
                     <select class="custom-select d-inline ml-2 text-capitalize" ng-options="level for level in vm.levels"
-                            ng-model="vm.selectedLevel" ng-focus="vm.onOpenDropdown()" ng-blur="vm.onHideDropdown()" ng-change="vm.loadData()">
+                            ng-model="vm.selectedLevel" ng-change="vm.reloadDataAndReset()">
                         <option value="">Show all</option>
                     </select>
                 </th>

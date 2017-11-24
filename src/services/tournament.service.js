@@ -30,14 +30,14 @@ class Tournament {
         let URL = getApiUrl(`players?start=${start}&n=${n}`);
         if (search && typeof search === 'string') {
             search = search.toLowerCase();
-            start = 0;
+            // start = 0;
             URL = getApiUrl(`players?start=${start}&n=${n}&search=${search}`);
             if (level && typeof level === 'string') {
                 URL += '&level=' + level.toLowerCase();
             }
         }
         else if (level && typeof level === 'string') {
-            start = 0;
+            // start = 0;
             URL = getApiUrl(`players?start=${start}&n=${n}&level=${level.toLowerCase()}`);
         }
         return this._$http.get(URL)
