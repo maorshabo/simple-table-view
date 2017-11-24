@@ -1,7 +1,7 @@
 import 'whatwg-fetch'
 
-// const API_URL = 'http://localhost:1337/localhost:20000/api/v1';
-const API_URL = 'http://localhost:20000/api/v1';
+const API_URL = 'http://localhost:1337/localhost:20000/api/v1';
+// const API_URL = 'http://localhost:20000/api/v1';
 
 function getApiUrl(path) {
     return `${API_URL}/${path}`
@@ -29,6 +29,7 @@ class Tournament {
     getPlayers(start = 0, n = 100, search, level) {
         let URL = getApiUrl(`players?start=${start}&n=${n}`);
         if (search && typeof search === 'string') {
+            search = search.toLowerCase();
             start = 0;
             URL = getApiUrl(`players?start=${start}&n=${n}&search=${search}`);
             if (level && typeof level === 'string') {
