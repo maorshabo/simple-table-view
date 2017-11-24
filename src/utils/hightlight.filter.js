@@ -5,6 +5,7 @@ function hightlight($sce) {
     return function(text, phrase) {
         text = text.toString();
         if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'), '<span class="highlighted">$1</span>');
+        text = `<span class="text-capitalize">${text}</span>`;
         return $sce.trustAsHtml(text)
     }
 }

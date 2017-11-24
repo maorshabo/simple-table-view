@@ -65,8 +65,8 @@ class ResultsTableController {
         }
 
         // get pager object from service
-        this.pager = PagerService.getPager(this.totalPlayers, page, this.pageSize, 6);
-        this.currentPage = page;
+        this.pager = PagerService.getPager(this.totalPlayers, Math.min(page, this.pager.totalPages), this.pageSize, 6);
+        this.currentPage = this.pager.currentPage;
         this.loadData();
     }
 
@@ -101,6 +101,11 @@ class ResultsTableController {
             search: this.searchQuery,
             level: this.selectedLevel
         });
+    }
+
+    search() {
+        this.loadData();
+        this.setPage(1);
     }
 }
 

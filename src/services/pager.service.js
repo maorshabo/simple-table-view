@@ -40,7 +40,7 @@ class PagerService {
         let idx = startPage;
         const arraySize = endPage > maxPagesToShow ? maxPagesToShow : endPage;
         let pages = Array(arraySize).fill(0).map(i => idx++);
-
+        // if (currentPage > totalPages) currentPage = totalPages;
         // return object with all pager properties required by the view
         return {
             totalItems: totalItems,
