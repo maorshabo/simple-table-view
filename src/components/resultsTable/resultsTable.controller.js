@@ -54,13 +54,13 @@ class ResultsTableController {
 
     getLevels(list = []) {
         return Object.keys(list.reduce((prev, current) => {
-                prev[current['level']] = true;
-                return prev;
-            },{}));
+            prev[current['level']] = true;
+            return prev;
+        }, {}));
     }
 
     setPage(page) {
-        if (page < 1 || page > this.pager.totalPages) {
+        if (page < 1 || (page > this.pager.totalPages && this.pager.totalPages > 0)) {
             return;
         }
 
